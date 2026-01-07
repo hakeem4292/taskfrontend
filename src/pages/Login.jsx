@@ -84,9 +84,9 @@ const Login = () => {
       
       <div style={{ marginTop: '20px', fontSize: '14px' }}>
         <p>Demo accounts:</p>
-        <p>• Admin: admin@example.com / password</p>
-        <p>• Product Manager: manager@example.com / password</p>
-        <p>• Viewer: viewer@example.com / password</p>
+        <p>•Admin:adminhakeem@gmail.com, / pass:hakeem@123</p>
+        <p>• Product Manager: james@123 / james@123</p>
+        <p>• Viewer: ajmal@123/ ajmal@123</p>
       </div>
     </div>
   );
