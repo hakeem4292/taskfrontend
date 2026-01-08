@@ -1,35 +1,56 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Products from './pages/Products';
-import Categories from './pages/Categories';
-import Users from './pages/Users';
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Products from "./pages/Products";
+import Categories from "./pages/Categories";
+import Users from "./pages/Users";
+
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const token = localStorage.getItem('token');
-  
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        
-        <Route path="/dashboard" element={
-          token ? <Dashboard /> : <Navigate to="/login" />
-        } />
-        
-        <Route path="/products" element={
-          token ? <Products /> : <Navigate to="/login" />
-        } />
-        
-        <Route path="/categories" element={
-          token ? <Categories /> : <Navigate to="/login" />
-        } />
-        
-        <Route path="/users" element={
-          token ? <Users /> : <Navigate to="/login" />
-        } />
-        
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/products"
+          element={
+            <ProtectedRoute>
+              <Products />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute role="admin">
+              <Users />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/" element={<Navigate to="/dashboard" />} />
       </Routes>
     </BrowserRouter>
